@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Quick Funds — Private Capital for Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f3a66; --navy-deep:#0b2c4f; --gold:#c08a2d; --gold-bright:#F49E0C;
+    --ink:#1b2638; --body:#4f5a6b; --cream:#fbf8f1; --cream2:#f3ecdf;
+    --line:#e3dccd; --line-navy:#1c4a78; --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--body);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:16px}
+  h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--ink);font-weight:600;line-height:1.18}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+  .eyebrow{font-family:'Inter';font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+  .divider{width:60px;height:1px;background:var(--gold);position:relative;margin:22px auto}
+  .divider:before{content:"";position:absolute;top:-3px;left:50%;width:7px;height:7px;background:var(--gold);transform:translateX(-50%) rotate(45deg)}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Inter';font-weight:600;cursor:pointer;border-radius:2px;padding:15px 30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:.18s;border:1px solid transparent}
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-primary:hover{background:var(--navy-deep)}
+  .btn-gold{background:var(--gold-bright);color:#3a2600}
+  .btn-gold:hover{filter:brightness(1.05)}
+  .btn-outline{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+  .btn-sm{padding:11px 22px;font-size:12px}
+
+  .topbar{background:var(--navy-deep);color:#cdddee;font-size:12.5px;letter-spacing:.03em}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:42px}
+  .topbar a{color:#cdddee}.topbar a:hover{color:#fff}
+  .topbar .l span{margin-right:22px}
+  .topbar .gold{color:var(--gold-bright)}
+  @media(max-width:760px){.topbar .l span:first-child{display:none}}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:88px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .crest{width:46px;height:46px;border:1.5px solid var(--navy);display:grid;place-items:center;font-family:'Playfair Display';font-weight:700;font-size:18px;color:var(--navy);position:relative}
+  .crest:after{content:"";position:absolute;inset:3px;border:1px solid var(--gold)}
+  .wordmark{display:flex;flex-direction:column;line-height:1.05}
+  .wm-real{font-family:'Playfair Display';font-weight:700;font-size:21px;color:var(--ink);letter-spacing:.01em}
+  .wm-funds{font-family:'Inter';font-weight:600;font-size:10px;color:var(--gold);letter-spacing:.34em;text-transform:uppercase;margin-top:3px}
+  .navlinks{display:flex;gap:32px;align-items:center}
+  .navlinks a{font-family:'Inter';color:var(--ink);font-weight:500;font-size:14px;letter-spacing:.02em}
+  .navlinks a:hover{color:var(--gold)}
+  @media(max-width:920px){.navlinks{display:none}.nav .btn-primary{display:none}}
+
+  .hero{padding:104px 0 92px;text-align:center;position:relative;background:linear-gradient(180deg,var(--cream),var(--white))}
+  .hero h1{font-size:clamp(40px,5.6vw,64px);font-weight:600;max-width:880px;margin:0 auto;color:var(--ink)}
+  .hero h1 em{font-style:italic;color:var(--navy)}
+  .hero p.sub{font-size:18px;max-width:600px;margin:0 auto;color:var(--body)}
+  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+  .hero .trust{margin-top:40px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--body)}
+  .hero .trust b{color:var(--navy);font-weight:700}
+
+  .stats{background:var(--navy);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:50px 30px}
+  .stat{text-align:center;border-right:1px solid var(--line-navy)}
+  .stat:last-child{border:none}
+  .stat .num{font-family:'Playfair Display';font-size:42px;color:#fff;font-weight:600}
+  .stat .num span{color:var(--gold-bright)}
+  .stat .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a9c2db;margin-top:8px}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:36px 0}.stat:nth-child(2){border:none}.stat:nth-child(1),.stat:nth-child(2){padding-bottom:36px;border-bottom:1px solid var(--line-navy)}}
+
+  section{padding:96px 0}
+  .center{text-align:center;max-width:680px;margin:0 auto 58px}
+  .center h2{font-size:clamp(30px,4vw,44px);font-weight:600;margin-top:14px}
+  .center p{font-size:17px;margin-top:6px}
+
+  .prodgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .prod{background:var(--white);border:1px solid var(--line);padding:36px;display:flex;gap:22px;transition:.2s;position:relative}
+  .prod:hover{border-color:var(--gold);box-shadow:0 14px 40px rgba(27,38,56,.07)}
+  .prod .pn{font-family:'Playfair Display';font-size:30px;font-weight:600;color:var(--gold);line-height:1;min-width:42px}
+  .prod h3{font-size:21px;font-weight:600;margin-bottom:6px}
+  .prod p{font-size:14.5px;color:var(--body)}
+  .prod .apply{margin-top:14px;font-family:'Inter';font-weight:600;color:var(--navy);background:none;border:none;cursor:pointer;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:0;border-bottom:1px solid var(--gold);padding-bottom:3px}
+  .prod .apply:hover{color:var(--gold)}
+  .prod .tag{position:absolute;top:22px;right:26px;font-family:'Inter';font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+  @media(max-width:760px){.prodgrid{grid-template-columns:1fr}}
+
+  .alt{background:var(--cream2)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;text-align:center}
+  .step .rn{font-family:'Playfair Display';font-size:30px;color:var(--gold);font-weight:600;font-style:italic}
+  .step h3{font-size:22px;font-weight:600;margin:14px 0 10px}
+  .step p{font-size:15px}
+  .step .line{width:36px;height:1px;background:var(--gold);margin:16px auto 0}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:40px}}
+
+  .founder{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+  .founder .frame{padding:14px;border:1px solid var(--gold)}
+  .founder .photo{aspect-ratio:4/5;background:var(--cream2);border:1px solid var(--line);display:grid;place-items:center;color:var(--body);font-size:13px;text-align:center;font-style:italic}
+  .founder h2{font-size:36px;font-weight:600;margin:14px 0 2px}
+  .founder .role{font-family:'Inter';color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .founder p{font-size:16px}
+  .creds{display:flex;gap:44px;margin-top:30px;flex-wrap:wrap}
+  .creds b{font-family:'Playfair Display';font-size:30px;color:var(--navy);display:block;font-weight:600}
+  .creds span{font-size:12px;letter-spacing:.04em;color:var(--body)}
+  @media(max-width:820px){.founder{grid-template-columns:1fr;gap:34px}}
+
+  .tcols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .quote{text-align:center}
+  .quote .mk{font-family:'Playfair Display';font-size:54px;color:var(--gold);line-height:.4;height:34px}
+  .quote p{font-family:'Playfair Display';font-style:italic;font-size:18px;color:var(--ink);line-height:1.5}
+  .quote .who{margin-top:18px;font-family:'Inter';font-weight:600;font-size:11px;color:var(--body);letter-spacing:.1em;text-transform:uppercase}
+  @media(max-width:820px){.tcols{grid-template-columns:1fr;gap:48px}}
+
+  .faq{max-width:800px;margin:0 auto}
+  .qa{border-bottom:1px solid var(--line)}
+  .qa button{width:100%;text-align:left;background:none;border:none;color:var(--ink);font-family:'Playfair Display';font-weight:600;font-size:20px;padding:26px 0;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  .qa .a{max-height:0;overflow:hidden;transition:.3s;color:var(--body);font-size:15px}
+  .qa.open .a{max-height:360px;padding-bottom:26px}
+  .qa .pl{color:var(--gold);font-size:22px;font-family:'Inter';font-weight:300;transition:.2s;flex-shrink:0}
+  .qa.open .pl{transform:rotate(45deg)}
+
+  .cta{background:var(--navy);text-align:center;color:#fff}
+  .cta h2{color:#fff;font-size:clamp(28px,4vw,42px);font-weight:600}
+  .cta p{color:#bcd0e5;font-size:17px;margin-top:10px}
+  .cta .divider{background:var(--gold-bright)}
+  .cta .divider:before{background:var(--gold-bright)}
+
+  footer{background:var(--navy-deep);color:#b9cde0;padding:64px 0 32px}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px}
+  .foot .wm-real{color:#fff}
+  .foot .crest{border-color:#fff;color:#fff}
+  .foot p{font-size:14px;margin-top:18px;max-width:300px;color:#9fb6cd}
+  .foot h5{font-family:'Inter';font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-bright);font-weight:700;margin-bottom:18px}
+  .foot a{display:block;margin-bottom:12px;font-size:15px;color:#cdddee}
+  .foot a:hover{color:#fff}
+  .copy{text-align:center;font-size:12.5px;margin-top:50px;border-top:1px solid var(--line-navy);padding-top:28px;color:#7e98b2;letter-spacing:.04em}
+  @media(max-width:780px){.foot{grid-template-columns:1fr;gap:32px}}
+
+  .overlay{position:fixed;inset:0;background:rgba(15,30,51,.5);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:44px 16px}
+  .overlay.show{display:flex}
+  .modal{background:var(--cream);border:1px solid var(--line);border-radius:3px;max-width:600px;width:100%;padding:42px;position:relative;margin:auto;box-shadow:0 30px 80px rgba(15,30,51,.3)}
+  .modal .top{text-align:center;margin-bottom:8px}
+  .modal h3{font-size:27px;font-weight:600}
+  .modal .msub{font-size:14px;margin-bottom:8px;text-align:center}
+  .modal .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--body);font-size:26px;cursor:pointer;line-height:1}
+  .modal .close:hover{color:var(--ink)}
+  .fgroup{margin-bottom:16px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:block;font-family:'Inter';font-size:12px;font-weight:600;margin-bottom:7px;color:var(--ink);letter-spacing:.03em}
+  label .req{color:var(--gold)}
+  input{width:100%;background:var(--white);border:1px solid var(--line);border-radius:2px;padding:13px 14px;color:var(--ink);font-family:'Inter';font-size:15px}
+  input:focus{outline:none;border-color:var(--navy)}
+  .sec-label{font-family:'Inter';font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin:22px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .modal .btn{width:100%;justify-content:center;margin-top:14px}
+  .note{font-size:12px;text-align:center;margin-top:14px;color:var(--body)}
+  .thanks{text-align:center;padding:24px 0}
+  .thanks .check{width:62px;height:62px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:30px;margin:0 auto 18px}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}.modal{padding:28px}}
+
+  .proto-flag{background:var(--ink);color:#d8c8a8;text-align:center;font-size:12.5px;padding:9px;letter-spacing:.02em}
+  .proto-flag b{color:var(--gold-bright)}
+</style>
+</head>
+<body>
+
+<div class="proto-flag"><b>PROTOTYPE V4 · CLASSIC</b> &nbsp;·&nbsp; Alternate direction — formal / institutional. Logo is a styled crest placeholder; forms &amp; founder photo are placeholders.</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="l">
+      <span>Private Capital for Real Estate Investors</span>
+      <span class="gold">One-Hour Response on Transactional Deals</span>
+    </div>
+    <div class="r">
+      <a href="tel:+18015987171">(801) 598-7171</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="crest">R</div>
+      <div class="wordmark"><span class="wm-real">Real Quick Funds</span><span class="wm-funds">Established Capital</span></div>
+    </div>
+    <nav class="navlinks">
+      <a href="#products">Funding</a>
+      <a href="#process">Process</a>
+      <a href="#founder">Leadership</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://rezgapplus.cashflowportal.com/">Invest</a>
+    </nav>
+    <button class="btn btn-primary btn-sm" onclick="openForm('General')">Get Funded</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Real Quick Funds &middot; Since 2023</div>
+    <div class="divider"></div>
+    <h1>We fund the deal, so you can <em>close with confidence.</em></h1>
+    <div class="divider"></div>
+    <p class="sub">Institutional-grade transactional and asset-backed capital for real estate investors — delivered with the rigor of a thirty-year finance career and the speed of a one-hour response.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="openForm('General')">Submit a Funding Request</button>
+      <a href="#products" class="btn btn-outline">View Funding Options</a>
+    </div>
+    <div class="trust"><b>$15M+</b> Deployed &nbsp;&middot;&nbsp; <b>500+</b> Deals Funded &nbsp;&middot;&nbsp; <b>No</b> Credit Checks</div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num">500<span>+</span></div><div class="lab">Deals Funded</div></div>
+    <div class="stat"><div class="num">$15M<span>+</span></div><div class="lab">Capital Deployed</div></div>
+    <div class="stat"><div class="num">85</div><div class="lab">Active Clients</div></div>
+    <div class="stat"><div class="num">1 <span>HR</span></div><div class="lab">Transactional Response</div></div>
+  </div>
+</div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Transactional Funding</div>
+      <h2>Capital for the deal in front of you</h2>
+      <p>For wholesalers, flippers, and developers — with net $0 out-of-pocket structures available.</p>
+    </div>
+    <div class="prodgrid">
+      <div class="prod"><div class="pn">I</div><div><h3>Earnest Money (EMD)</h3><p>Secure your deals with fast, reliable earnest money funding — no credit checks, no paperwork drag.</p><button class="apply" onclick="openForm('EMD (Earnest Money Deposit)')">Apply Now</button></div></div>
+      <div class="prod"><div class="pn">II</div><div><h3>Double Close</h3><p>100% financing on the A→B leg of your transaction. Funds wired to title, repaid the same day.</p><button class="apply" onclick="openForm('Double Close')">Apply Now</button></div></div>
+      <div class="prod"><div class="pn">III</div><div><h3>Stack / Morby Method</h3><p>Seller carry-back funding for down payment and closing costs. Net $0 out-of-pocket structures.</p><button class="apply" onclick="openForm('Stack / Morby Method')">Apply Now</button></div></div>
+      <div class="prod"><span class="tag">New</span><div class="pn">IV</div><div><h3>Echo Down Payment</h3><p>Same-day transactional down-payment funding that lets you close without tying up your own capital.</p><button class="apply" onclick="openForm('Echo Down Payment')">Apply Now</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Asset-Backed Lending</div>
+      <h2>Longer-term capital, asset-based underwriting</h2>
+      <p>Qualify on the deal, not your tax returns — credit-flexible programs for buy-and-hold and fix &amp; flip.</p>
+    </div>
+    <div class="prodgrid">
+      <div class="prod"><div class="pn">V</div><div><h3>DSCR Loans</h3><p>Buy or refinance rental property and qualify on the asset's income rather than your personal income. Built for buy-and-hold investors.</p><button class="apply" onclick="openForm('DSCR Loan')">Apply Now</button></div></div>
+      <div class="prod"><div class="pn">VI</div><div><h3>Hard Money</h3><p>Fast bridge funding for your next flip or investment project, with optional rehab draws and streamlined, asset-focused underwriting.</p><button class="apply" onclick="openForm('Hard Money Loan')">Apply Now</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">The Process</div>
+      <h2>Funded in three steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="rn">I</div><h3>Submit Your Deal</h3><p>Complete our short funding request with the essentials of your transaction.</p><div class="line"></div></div>
+      <div class="step"><div class="rn">II</div><h3>One-Hour Response</h3><p>On transactional deals, our team reviews and responds within the hour — not days.</p><div class="line"></div></div>
+      <div class="step"><div class="rn">III</div><h3>Receive Your Funds</h3><p>Documents signed, capital wired directly to your title company for closing.</p><div class="line"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="founder">
+  <div class="wrap">
+    <div class="founder">
+      <div class="frame"><div class="photo">[ Portrait —<br>Paul Brown ]</div></div>
+      <div>
+        <div class="eyebrow">Leadership</div>
+        <h2>Paul Brown</h2>
+        <div class="role">Founder &amp; President</div>
+        <p>Paul brings three decades of institutional finance to private lending. He managed a $26 billion mortgage servicing portfolio and, as AIG's International Chief Underwriting Officer, directed business lines generating approximately $5 billion in revenue across the United States, Japan, and Singapore. In 2023 he committed full-time to real estate investing and private money lending — bringing that same institutional discipline to funding your deals.</p>
+        <div class="creds">
+          <div><b>$26B</b><span>Servicing Portfolio Managed</span></div>
+          <div><b>$5B</b><span>Revenue Lines Directed</span></div>
+          <div><b>30 yrs</b><span>Institutional Finance</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Client Results</div>
+      <h2>Investors who closed because of us</h2>
+      <p>[ Placeholder — real names / initials to be added before launch ]</p>
+    </div>
+    <div class="tcols">
+      <div class="quote"><div class="mk">&ldquo;</div><p>I needed earnest money fast, and Real Quick Funds delivered. A hassle-free process and quick approvals.</p><div class="who">Wholesaler &middot; Texas</div></div>
+      <div class="quote"><div class="mk">&ldquo;</div><p>They came through at a critical moment. I completed the project and sold at the highest comp in the area.</p><div class="who">Jeff &middot; Investor</div></div>
+      <div class="quote"><div class="mk">&ldquo;</div><p>Approved and funded the very next day. They made it easy to get funding exactly when I needed it.</p><div class="who">Ryan &middot; Flipper</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions, answered</h2>
+    </div>
+    <div class="faq">
+      <div class="qa"><button onclick="toggleFaq(this)">What is a Double Close? <span class="pl">+</span></button><div class="a"><p>A same-day double close: you buy the property (A→B), then sell to your end buyer (B→C) the same day. We fund the A→B purchase so you don't use your own cash. When your buyer closes, our funds are repaid instantly.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">What is the Stack Method? <span class="pl">+</span></button><div class="a"><p>When a seller's carry-back note covers the buyer's down payment, the title company still needs real cash in escrow to close. We put up that cash. After closing, the seller-carry second note is issued and repays us plus our fee.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">What is the Echo Method? <span class="pl">+</span></button><div class="a"><p>We front the end buyer's down payment — but instead of being repaid from a seller-carry note (as in a Stack), we're repaid directly out of the seller's proceeds, usually the wholesaler's assignment fee.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">How fast do you respond? <span class="pl">+</span></button><div class="a"><p>On transactional deals (EMD, Double Close, Stack, Echo), we respond within one hour. Funding follows quickly after documents and title confirmation — often same-day.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">How much can you fund? <span class="pl">+</span></button><div class="a"><p>Double Close: well over $100M. EMD: up to $500K. Stack: up to $10M. Echo: up to $10M.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">What do you charge? <span class="pl">+</span></button><div class="a"><p>EMD: 5% upfront + 20% at close, or 10% upfront and nothing at close. Double Close: 1.25% up to $1M. Stack &amp; Echo: a flat 2.5%. Plus a percentage of every referred deal that closes.</p></div></div>
+      <div class="qa"><button onclick="toggleFaq(this)">Do you provide Proof of Funds? <span class="pl">+</span></button><div class="a"><p>Yes — complimentary POF letters. Full verification (bank statements or Plaid) carries a small fee and is completed only as part of a submitted deal.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--gold-bright)">Get Started</div>
+    <div class="divider"></div>
+    <h2>No matter the size, we will fund it.</h2>
+    <p>Flexible, reliable capital for real estate deals of every size.</p>
+    <div style="margin-top:30px"><button class="btn btn-gold" onclick="openForm('General')">Submit a Funding Request</button></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand"><div class="crest">R</div><div class="wordmark"><span class="wm-real">Real Quick Funds</span><span class="wm-funds">Established Capital</span></div></div>
+        <p>Private transactional and asset-backed capital for real estate investors nationwide.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:+18015987171">(801) 598-7171</a>
+        <a href="mailto:Admin@RealQuickFunds.com">Admin@RealQuickFunds.com</a>
+        <a href="https://meetings-na2.hubspot.com/admin3005">Schedule with Paul</a>
+        <a href="https://meetings-na2.hubspot.com/justin-pilakka">Schedule with Justin</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#products">Funding Options</a>
+        <a href="#founder">Leadership</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://rezgapplus.cashflowportal.com/">Invest With Us</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 Real Quick Funds, LLC. All rights reserved.</div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeForm()">
+  <div class="modal">
+    <button class="close" onclick="closeForm()">×</button>
+    <div id="formBody">
+      <div class="top">
+        <h3 id="formTitle">Get Funding</h3>
+        <div class="divider"></div>
+        <div class="msub">A three-minute request. One-hour response on transactional deals.</div>
+      </div>
+      <form onsubmit="submitForm(event)">
+        <div class="sec-label">Borrower Information</div>
+        <div class="frow">
+          <div class="fgroup"><label>First Name <span class="req">*</span></label><input required placeholder="John"></div>
+          <div class="fgroup"><label>Last Name <span class="req">*</span></label><input required placeholder="Doe"></div>
+        </div>
+        <div class="fgroup"><label>Email Address <span class="req">*</span></label><input type="email" required placeholder="john@example.com"></div>
+        <div class="fgroup"><label>Phone Number <span class="req">*</span></label><input required placeholder="(555) 123-4567"></div>
+        <div class="sec-label">Deal Information</div>
+        <div class="frow">
+          <div class="fgroup"><label>Requested Amount <span class="req">*</span></label><input required placeholder="$ 0"></div>
+          <div class="fgroup"><label>When Funds Are Needed <span class="req">*</span></label><input required placeholder="mm/dd/yyyy"></div>
+        </div>
+        <div class="fgroup"><label>Subject Property Address <span class="req">*</span></label><input required placeholder="Start typing an address…"></div>
+        <div class="frow">
+          <div class="fgroup"><label>City</label><input placeholder="City"></div>
+          <div class="fgroup"><label>State / ZIP</label><input placeholder="State / ZIP"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Funding Request</button>
+        <div class="note">On the live site, this lands directly in HubSpot and notifies your team instantly.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openForm(product){
+    document.getElementById('formTitle').textContent = product==='General' ? 'Get Funding' : 'Get Funding — '+product;
+    document.getElementById('overlay').classList.add('show');
+    document.body.style.overflow='hidden';
+  }
+  function closeForm(){
+    document.getElementById('overlay').classList.remove('show');
+    document.body.style.overflow='';
+    setTimeout(()=>location.reload(),50);
+  }
+  function submitForm(e){
+    e.preventDefault();
+    document.getElementById('formBody').innerHTML =
+      '<div class="thanks"><div class="check">✓</div><h3>Request Received</h3>'+
+      '<div class="msub" style="margin-top:12px">Our team will respond within the hour. '+
+      '(Demo — on the live site this creates a HubSpot deal and notifies your team.)</div>'+
+      '<button class="btn btn-primary" style="margin-top:8px" onclick="closeForm()">Close</button></div>';
+  }
+  function toggleFaq(btn){ btn.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
